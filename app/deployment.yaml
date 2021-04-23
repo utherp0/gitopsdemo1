@@ -23,7 +23,7 @@ spec:
       containers:
       - name: terminal
         imagePullPolicy: Always
-        image: quay.io/utherp0/devex4
+        image: quay.io/ilawson/devex4
         ports:
         - containerPort: 8080
           protocol: TCP
