@@ -1,0 +1,11 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleLink
+metadata:
+  name: application-menu-myblog
+spec:
+  href: 'https://devepiphany.org/home/'
+  location: ApplicationMenu
+  text: DevEpiphany Blog
+  applicationMenu:
+    section: Blogs
+    imageURL: https://i.ibb.co/pZ0Lxdb/Logo-Red-Hat-Hat-Color-RGB.png
