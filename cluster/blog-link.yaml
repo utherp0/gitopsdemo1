@@ -5,7 +5,7 @@ metadata:
 spec:
   href: 'https://devepiphany.org/home/'
   location: ApplicationMenu
-  text: DevEpiphany Blog by Uth (edited)
+  text: DevEpiphany Blog by Uth
   applicationMenu:
     section: Blogs
     imageURL: https://i.ibb.co/pZ0Lxdb/Logo-Red-Hat-Hat-Color-RGB.png
