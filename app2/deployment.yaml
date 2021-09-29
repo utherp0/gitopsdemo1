@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    app: devexterminal
+    app.kubernetes.io/component: web
+    app.kubernetes.io/instance: devexterminal
+    app.kubernetes.io/name: devexterminal
+    app.kubernetes.io/part-of: terminal-app
+    app.openshift.io/runtime: shell
+  name: devexterminal
+  namespace: sandbox-gitops
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: devexterminal
+  template:
+    metadata:
+      labels:
+        app: devexterminal
+    spec:
+      containers:
+      - name: terminal
+        imagePullPolicy: Always
+        image: quay.io/ilawson/devex4
+        ports:
+        - containerPort: 8080
+          protocol: TCP
