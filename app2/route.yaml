@@ -4,6 +4,7 @@ metadata:
   labels:
     app: devexterminal
   name: devexterminal
+  namespace: sandbox-gitops
 spec:
   port:
     targetPort: 8080-tcp
