@@ -6,17 +6,17 @@ spec:
   tasks:
   - name: hello
     taskRef:
-      kind: task
+      kind: Task
       name: task1
   - name: uth-message
     taskRef:
-      kind: task
+      kind: Task
       name: task2
     runAfter:
       - hello
   - name: goodbye
     taskref:
-      kind: task
+      kind: Task
       name: task3
     runAfter:
       - uth-message
