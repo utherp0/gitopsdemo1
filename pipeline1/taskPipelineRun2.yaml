@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
-  name: examplePipelineWithFiles
+  name: examplepipelinewithfiles
 spec:
   pipelineRef:
     name: filetest1

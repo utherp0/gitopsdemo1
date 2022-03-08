@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pipelineworkspace
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: pvc-pipelineworkspace
+  storageClassName: gp2
+  volumeMode: Filesystem
