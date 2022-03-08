@@ -7,3 +7,5 @@ resources:
 - task6.yaml
 - taskPipeline.yaml
 - taskPipeline2.yaml
+- workspacePvc.yaml
+- taskPipelineRun2.yaml
