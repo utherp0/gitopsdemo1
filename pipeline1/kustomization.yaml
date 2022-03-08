@@ -1,0 +1,9 @@
+resources:
+- task1.yaml
+- task2.yaml
+- task3.yaml
+- task4.yaml
+- task5.yaml
+- task6.yaml
+- taskPipeline.yaml
+- taskPipeline2.yaml

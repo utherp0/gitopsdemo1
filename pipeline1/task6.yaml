@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: task6
+spec:
+  steps:
+    - name: removefile
+      image: ubuntu
+      command:
+        - rm
+      args:
+        - /uth/test.txt
+  workspaces:
+  - name: working
+    mountPath: /uth

@@ -1,0 +1,45 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: pipeline2
+spec:
+  workspaces:
+    - name: working
+  tasks:
+  - name: hello
+    taskRef:
+      name: task1
+  - name: uth-message
+    taskRef:
+      name: task2
+    runAfter:
+      - hello
+  - name: goodbye
+    taskref:
+      name: task3
+    runAfter:
+      - uth-message
+  - name: filecreate
+    taskRef:
+      name: task4
+    workspaces:
+      - name: working
+        workspace: working
+    runAfter:
+      - goodbye
+  - name: filecheck
+    taskRef:
+      name: task5
+    workspaces:
+      - name: working
+        workspace: working
+    runAfter:
+      - filecreate
+  - name: filedelete
+    taskRef:
+      name: task6
+    workspaces:
+      - name: working
+        workspace: working
+    runAfter:
+      - filecheck

@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: task5
+spec:
+  steps:
+    - name: checkfile
+      image: ubuntu
+      command:
+        - ls
+      args:
+        - "-al"
+        - /uth/test.txt
+  workspaces:
+    - name: working
+      mountPath: /uth

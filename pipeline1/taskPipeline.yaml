@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: pipeline1
+spec:
+  tasks:
+  - name: hello
+    taskRef:
+      name: task1
+  - name: uth-message
+    taskRef:
+      name: task2
+    runAfter:
+      - hello
+  - name: goodbye
+    taskref:
+      name: task3
+    runAfter:
+      - uth-message

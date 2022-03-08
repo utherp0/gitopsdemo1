@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: filetest1
+spec:
+  tasks:
+    - name: task4
+      taskRef:
+        kind: Task
+        name: task4
+      workspaces:
+        - name: working
+          workspace: working
+    - name: task5
+      runAfter:
+        - task4
+      taskRef:
+        kind: Task
+        name: task5
+      workspaces:
+        - name: working
+          workspace: working
+    - name: task6
+      runAfter:
+        - task5
+      taskRef:
+        kind: Task
+        name: task6
+      workspaces:
+        - name: working
+          workspace: working
+  workspaces:
+    - name: working
