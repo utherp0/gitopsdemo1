@@ -15,7 +15,7 @@ spec:
           workspace: shared-workspace
       params:
         - name: url
-          value: https://github.com/redhat-developer-demos/tekton-tutorial
+          value: https://github.com/utherp0/quarkkubeendpoints
         - name: subdirectory
           value: ""
         - name: deleteExisting
@@ -27,7 +27,7 @@ spec:
         - fetch-repository
       params:
         - name: CONTEXT_DIR
-          value: "apps/greeter/java/quarkus"
+          value: ""
         - name: GOALS
           value:
             - -DskipTests
