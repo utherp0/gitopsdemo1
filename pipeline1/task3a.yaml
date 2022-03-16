@@ -1,0 +1,46 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: task3ubi
+spec:
+  steps:
+    - name: id
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - cat
+      args:
+        - /etc/redhat-release
+    - name: echo
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - echo
+      args:
+        - "hello world"
+    - name: create
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - touch
+      args:
+        - " test1.txt"
+    - name: whereami
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - pwd
+    - name: list
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - ls
+      args:
+        - "-ali"
+    - name: multitest
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - touch
+      args:
+        - "test.txt"
+        - ";"
+        - "ls"
+        - "-ali"
+        - ";"
+        - "rm"
+        - "test.txt"
