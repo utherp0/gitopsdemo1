@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: ubifilecheck
+spec:
+  steps:
+    - name: id
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - cat
+      args:
+        - /etc/redhat-release
+    - name: echo
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - echo
+      args:
+        - "Checking the file has been created in the workspace"
+    - name: checkfile
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      script: |
+        #!/usr/bin/env bash
+        ls -alZ /uth/test.txt
+  workspaces:
+    - name: working
+      mountPath: /uth

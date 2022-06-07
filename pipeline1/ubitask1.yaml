@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: ubifilecreate
+spec:
+  steps:
+    - name: id
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - cat
+      args:
+        - /etc/redhat-release
+    - name: echo
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - echo
+      args:
+        - "Creating the file in the workspace"
+    - name: createfile
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - touch
+      args:
+        - "/uth/test.txt"
+  workspaces:
+    - name: working
+      mountPath: /uth

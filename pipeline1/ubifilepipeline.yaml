@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: ubifilepipeline
+spec:
+  tasks:
+    - name: create
+      taskRef:
+        kind: task
+        name: ubifilecreate
+      workspaces:
+        - name: working
+          workspace: workingworkspace
+    - name: check
+      taskRef:
+        kind: task
+        name: ubifilecheck
+      runAfter:
+        - create
+      workspaces:
+        - name: working
+          workspace: workingworkspace
+    - name: remove 
+      taskRef:
+        kind: task
+        name: ubifileremove
+      runAfter:
+        - check
+      workspaces:
+        - name: working
+          workspace: workingworkspace
+  workspaces:
+    - name: workingworkspace

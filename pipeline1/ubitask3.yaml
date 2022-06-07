@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: ubifileremove
+spec:
+  steps:
+    - name: id
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - cat
+      args:
+        - /etc/redhat-release
+    - name: echo
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - echo
+      args:
+        - "Removing the file from the workspace"
+    - name: removefile
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      script: |
+        #!/usr/bin/env bash
+        rm /uth/test.txt
+  workspaces:
+    - name: working
+      mountPath: /uth
