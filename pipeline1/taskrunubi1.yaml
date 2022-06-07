@@ -1,0 +1,7 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: runubi1
+spec:
+  taskRef:
+    name: task1ubi

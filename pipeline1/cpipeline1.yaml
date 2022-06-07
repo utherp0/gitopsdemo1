@@ -1,0 +1,56 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: cpipeline1
+spec:
+  tasks:
+    - name: task1
+      taskRef:
+        kind: Task
+        name: ctask1
+    - name: task2
+      taskRef:
+        kind: Task
+        name: ctask2
+    - name: task3
+      taskRef:
+        kind: Task
+        name: ctask3
+    - name: task4
+      taskRef:
+        kind: Task
+        name: ctask4
+      runAfter:
+        - task1
+        - task2
+    - name: ctask5
+      taskRef:
+        kind: Task
+        name: ctask5
+      runAfter:
+        - task2
+        - task3
+    - name: ctask6
+      taskRef:
+        kind: Task
+        name: ctask6
+      runAfter:
+        - task4
+        - task5
+    - name: ctask7
+      taskRef:
+        kind: Task
+        name: ctask7
+      runAfter:
+        - task6
+    - name: ctask8
+      taskRef: 
+        kind: Task
+        name: ctask8
+      runAfter:
+        - task6
+  finally:
+    - name: cleanup
+      taskRef:
+        kind: Task
+        name: ctaskfinisher
