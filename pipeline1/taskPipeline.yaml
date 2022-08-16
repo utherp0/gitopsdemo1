@@ -15,7 +15,7 @@ spec:
     runAfter:
       - hello
   - name: goodbye
-    taskref:
+    taskRef:
       kind: Task
       name: task3
     runAfter:
