@@ -9,3 +9,7 @@ resources:
 - taskPipeline2.yaml
 - workspacePvc.yaml
 - taskPipelineRun2.yaml
+- ubitask1.yaml
+- ubitask2.yaml
+- ubitask3.yaml
+- ubifilepipeline1.yaml
