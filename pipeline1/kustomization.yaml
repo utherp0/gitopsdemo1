@@ -12,4 +12,4 @@ resources:
 - ubitask1.yaml
 - ubitask2.yaml
 - ubitask3.yaml
-- ubifilepipeline1.yaml
+- ubifilepipeline.yaml
