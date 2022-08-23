@@ -1,0 +1,43 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  annotations:
+    serving.knative.dev/creator: uther
+    serving.knative.dev/lastModifier: uther
+  labels:
+    boson.dev/function: 'true'
+    boson.dev/runtime: quarkus
+    function.knative.dev: 'true'
+    function.knative.dev/runtime: quarkus
+  name: svctest1
+spec:
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containerConcurrency: 0
+      containers:
+        - env:
+            - name: BUILT
+              value: 20220816T104414
+            - name: WATCHMAN
+              value: >-
+                http://watchman-jsonquarkussandbox.apps.summit-dev-21.k9pw.p1.openshiftapps.com/watch
+          image: >-
+            quay.io/ilawson/techtalkfunction
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 0
+          name: user-container
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 0
+            successThreshold: 1
+          resources: {}
+      enableServiceLinks: false
+      timeoutSeconds: 60
+  traffic:
+    - latestRevision: true
+      percent: 100
