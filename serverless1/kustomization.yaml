@@ -1,0 +1,4 @@
+resources:
+- broker.yaml
+- kservice.yaml
+- trigger.yaml
