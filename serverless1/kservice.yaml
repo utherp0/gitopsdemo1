@@ -16,13 +16,19 @@ spec:
       creationTimestamp: null
     spec:
       containerConcurrency: 0
+      idleTimeoutSeconds: 20
       containers:
         - env:
             - name: BUILT
               value: 20220816T104414
             - name: WATCHMAN
               value: >-
-                http://watchman-jsonquarkussandbox.apps.summit-dev-21.k9pw.p1.openshiftapps.com/watch
+                http://watchman.endpoint
+            - name: SOURCED
+              value: GitHub
+            - name: SOURCEDURL
+              value: >-
+                https://github.com/utherp0/gitopsdemo1
           image: >-
             quay.io/ilawson/techtalkfunction
           livenessProbe:
