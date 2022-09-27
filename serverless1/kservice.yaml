@@ -16,7 +16,6 @@ spec:
       creationTimestamp: null
     spec:
       containerConcurrency: 0
-      idleTimeoutSeconds: 20
       containers:
         - env:
             - name: BUILT
