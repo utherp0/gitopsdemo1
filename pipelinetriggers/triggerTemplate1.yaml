@@ -1,0 +1,23 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: triggertemplate1
+spec:
+  params:
+  - name: param1
+  - name: param2
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        labels:
+          tekton.dev/pipeline: pipeline1
+        name: pipeline1-triggered-$(uid)
+      spec:
+        params:
+          - name: param1
+            value: $(tt.params.param1)
+          - name: param2
+            value: $(tt.params.param2)
+        pipelieRef:
+          name: pipeline1

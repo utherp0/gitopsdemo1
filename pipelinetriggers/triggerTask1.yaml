@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: triggertask1
+spec:
+  params:
+    - name: taskparam1
+      type: string
+    - name: taskparam2
+      type: string
+  steps:
+    - name: id
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - cat
+      args:
+        - /etc/redhat-release
+    - name: echoparam1
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - echo
+      args:
+        - "Param 1 - $(params.taskparam1)"
+    - name: echoparam2
+      image: registry.access.redhat.com/ubi8/ubi:latest
+      command:
+        - echo
+      args:
+        - "Param 2 - $(params.taskparam2)"

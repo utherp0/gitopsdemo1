@@ -1,0 +1,21 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: pipeline1
+spec:
+  params:
+    - name: param1
+      type: string
+      description: Example param 1
+    - name: param2
+      type: string
+      description: Example param 2
+  tasks:
+    - name: task1
+      taskRef:
+        name: triggertask1
+      params:
+        - name: taskparam1
+          value: "$(params.param1)"
+        - name: taskparam2
+          value: "$(param.param2)"
