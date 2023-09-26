@@ -18,4 +18,4 @@ spec:
         - name: taskparam1
           value: "$(params.param1)"
         - name: taskparam2
-          value: "$(param.param2)"
+          value: "$(params.param2)"
