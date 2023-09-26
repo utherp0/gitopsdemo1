@@ -1,0 +1,1 @@
+curl -X POST http://trigger-triggertest1.apps.cluster-zf55b.zf55b.sandbox1270.opentlc.com/ -H 'Content-Type: application/json' -d '{"param1":"hello","param2":"world"}'

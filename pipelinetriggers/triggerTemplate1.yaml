@@ -19,5 +19,5 @@ spec:
             value: $(tt.params.param1)
           - name: param2
             value: $(tt.params.param2)
-        pipelieRef:
+        pipelineRef:
           name: pipeline1
