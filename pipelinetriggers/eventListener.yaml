@@ -3,7 +3,7 @@ kind: EventListener
 metadata:
   name: eventlistener1
 spec:
-  serviceAccountName: triggersa
+# serviceAccountName: triggersa
   triggers:
   - bindings:
     - ref: triggerbinding1
