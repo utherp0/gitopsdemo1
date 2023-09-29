@@ -3,7 +3,7 @@ kind: EventListener
 metadata:
   name: eventlistener1
 spec:
-  serviceAccountName: tekton-triggers-sa
+  serviceAccountName: triggersa
   triggers:
   - bindings:
     - ref: triggerbinding1
