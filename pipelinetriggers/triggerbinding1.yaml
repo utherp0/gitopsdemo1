@@ -1,0 +1,10 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  name: triggerbinding1
+spec:
+  params:
+  - name: param1
+    value: $(body.param1)
+  - name: param2
+    value: $(body.param2)
