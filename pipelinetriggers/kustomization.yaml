@@ -3,4 +3,4 @@ resources:
 - pipeline1.yaml
 - triggerTask1.yaml
 - triggerTemplate1.yaml
-- triggerBinding1.yaml
+- triggerbinding1.yaml
