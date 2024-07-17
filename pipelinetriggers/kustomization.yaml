@@ -1,0 +1,6 @@
+resources:
+- eventListener.yaml
+- pipeline1.yaml
+- triggerTask1.yaml
+- triggerTemplate1.yaml
+- triggerBinding1.yaml
