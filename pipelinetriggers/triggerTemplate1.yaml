@@ -11,7 +11,7 @@ spec:
       kind: PipelineRun
       metadata:
         labels:
-          tekton.dev/pipeline: pipeline1
+          tekton.dev/pipeline: triggeredpipeline
         name: pipeline1-triggered-$(uid)
       spec:
         params:
@@ -20,4 +20,4 @@ spec:
           - name: param2
             value: $(tt.params.param2)
         pipelineRef:
-          name: pipeline1
+          name: triggeredpipeline
