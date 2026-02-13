@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: audit-run
+spec:
+  description: Final Task, always called
+  params:
+    - name: min
+      type: string
+      default: "Undefined"
+    - name: max
+      type: string
+      default: "Undefined"
+    - name: result
+      type: string
+      default: "Undefined"
+    - name: runName
+      type: string
+      default: "Undefined"
+  steps:
+    - name: generate-report
+      image: ubi9:latest
+      script: |
+        #!/bin/sh
+        date 
+        echo "Run Name: $(params.runName)"
+        echo "Result: $(params.result)"
+        echo "Min: $(params.min) Max: $(params.max)"

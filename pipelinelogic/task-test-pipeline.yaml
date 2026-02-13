@@ -1,0 +1,81 @@
+﻿apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: task-test-pipeline
+spec:
+  params:
+    - name: minValue
+      type: string
+      description: Minimal value for random number
+      default: '1'
+    - name: maxValue
+      type: string
+      description: Maximum value for random number
+      default: '100'
+    - name: runName
+      type: string
+      description: Name of run for audit
+      default: Random Number Pipeline
+  tasks:
+    - name: generate-random-number
+      params:
+        - name: min
+          value: $(params.minValue)
+        - name: max
+          value: $(params.maxValue)
+      taskRef:
+        kind: Task
+        name: generate-random-number
+    - name: check-random-output
+      params:
+        - name: random-number
+          value: $(tasks.generate-random-number.results.random-number)
+        - name: is-even
+          value: $(tasks.generate-random-number.results.isEven)
+        - name: is-odd
+          value: $(tasks.generate-random-number.results.isOdd)
+      runAfter:
+        - generate-random-number
+      taskRef:
+        kind: Task
+        name: check-random-output
+    - name: report-even
+      params:
+        - name: random-number
+          value: $(tasks.generate-random-number.results.random-number)
+      taskRef:
+        kind: Task
+        name: report-even-number
+      runAfter:
+        - generate-random-number
+      when:
+        - input: $(tasks.generate-random-number.results.isEven)
+          operator: in
+          values: ["TRUE"]
+    - name: report-odd
+      params:
+        - name: random-number
+          value: $(tasks.generate-random-number.results.random-number)
+      taskRef:
+        kind: Task
+        name: report-odd-number
+      runAfter:
+        - generate-random-number
+      when:
+        - input: $(tasks.generate-random-number.results.isOdd)
+          operator: in
+          values: ["TRUE"]
+  finally:
+    - name: final-audit
+      taskRef:
+        kind: Task
+        name: audit-run
+      params:
+        - name: min
+          value: $(params.minValue)
+        - name: max
+          value: $(params.maxValue)
+        - name: runName
+          value: $(params.runName)
+        - name: result
+          value: $(tasks.generate-random-number.results.random-number)

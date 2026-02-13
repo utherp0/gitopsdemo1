@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: report-even-number
+spec:
+  description: ONLY called when the Random Number is EVEN
+  params:
+    - name: random-number
+      type: string
+      default: "NULL"
+  steps:
+    - name: report-even
+      image: ubi9:latest
+      script: |
+        #!/bin/sh
+        echo "Received Number $(params.random-number)"
+        echo "IN TASK FOR AN EVEN NUMBER"

@@ -1,0 +1,40 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: generate-random-number
+spec:
+  description: Generates a random number within a range.
+  params:
+    - name: min
+      type: string
+      default: "1"
+    - name: max
+      type: string
+      default: "100"
+  results:
+    - name: random-number
+      description: The generated random number.
+    - name: isEven
+      description: Number generated is even
+    - name: isOdd
+      description: Number generated is odd
+  steps:
+    - name: generate
+      image: ubi9:latest
+      script: |
+        #!/bin/sh
+        # Calculate random number between min and max
+        RANGE=$(( $(params.max) - $(params.min) + 1 ))
+        RESULT=$(( $RANDOM % $RANGE + $(params.min) ))
+        MODULUS=$(( $RESULT % 2 ))
+        echo -n $RESULT | tee $(results.random-number.path)
+        if [ $MODULUS -eq 0 ]; then
+          echo "(EVEN)"
+          echo -n "TRUE" | tee $(results.isEven.path)
+          echo -n "FALSE" | tee $(results.isOdd.path)
+        else
+          echo "(ODD)"
+          echo -n "FALSE" | tee $(results.isEven.path)
+          echo -n "TRUE" | tee $(results.isOdd.path)
+        fi
+

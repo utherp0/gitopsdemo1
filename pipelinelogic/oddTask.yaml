@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: report-odd-number
+spec:
+  description: ONLY called when the Random Number is ODD
+  params:
+    - name: random-number
+      type: string
+      default: "NULL"
+  steps:
+    - name: report-odd
+      image: ubi9:latest
+      script: |
+        #!/bin/sh
+        echo "Received Number $(params.random-number)"
+        echo "IN TASK FOR AN ODD NUMBER"

@@ -1,0 +1,24 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: check-random-output
+spec:
+  description: Displays params generated from previous task
+  params:
+    - name: random-number
+      type: string
+      default: "NULL"
+    - name: is-even
+      type: string
+      default: "NULL"
+    - name: is-odd
+      type: string
+      default: "NULL"
+  steps:
+    - name: display
+      image: ubi9:latest
+      script: |
+        #!/bin/sh
+        echo "Received Number $(params.random-number)"
+        echo "Number is odd: $(params.is-odd)"
+        echo "Number is even: $(params.is-even)"
